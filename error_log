@@ -1,0 +1,2 @@
+[02-Jul-2014 13:46:56 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home2/durthacj/public_html/mc/libs/Modules/ip.php on line 54
+[02-Jul-2014 13:46:56 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/durthacj/public_html/mc/libs/Modules/ip.php:54) in /home2/durthacj/public_html/mc/module.php on line 84

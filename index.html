@@ -1,0 +1,405 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>linux-dash : Server Monitoring Web Dashboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Monitor your Linux server through a simple web dashboard. Open source and free!">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+        <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+        <link href="css/pages/dashboard.css" rel="stylesheet" type="text/css">
+        <link href="css/odometer.css" rel="stylesheet" type="text/css">
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+          <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="./"><i class="icon-rocket"></i>&nbsp; Mission Control</a>
+                    <div class="nav-collapse">
+
+                <ul class="nav pull-right">
+ 
+                </ul>
+            </div>
+                </div>
+            </div>
+        </div>
+        <div class="subnavbar">
+            <div class="subnavbar-inner">
+
+             <a class="btn btn-navbar btn-info visible-phone" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </a>
+
+                <div class="container nav-collapse">
+
+                    <ul class="mainnav">
+                    <li>
+                        <a class="js-smoothscroll" href="#" onclick="launch()"><i class="icon-dashboard"></i><span>Blast Off</span></a>
+                    </li>
+
+                    <li>
+                        <a class="js-smoothscroll" href="#refresh-os"><i class="icon-medkit"></i><span>Oh Shit</span></a>
+                    </li>
+                    <li>
+                        <a class="js-smoothscroll" href="#" onclick="enableAll()"><i class="icon-check-sign"></i><span>Enable All</span></a>
+                    </li>
+                    <li>
+                        <a class="js-smoothscroll" href="#" onclick="disableAll()"><i class="icon-check-minus"></i><span>Disable All</span></a>
+                    </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i id="closed-widget-count">0</i>
+                <span> Inactive Launchpads <i class="icon-caret-down"></i></span>
+                </a>
+                <ul class="dropdown-menu" id="closed-widget-list">
+ 
+                <li class=""><hr></li>
+                </ul>
+            </li>
+                    </ul>
+                </div><!-- /container -->
+            </div><!-- /subnavbar-inner -->
+        </div><!-- /subnavbar -->
+        <div class="main">
+            <div class="main-inner">
+                <div class="container">
+                    <div class="lead" style="text-align: center;">
+                        <div>
+                            Prepare for blast off
+                        </div>
+                    </div>
+                    <div id="widgets" class="row">
+                            <!-- pad-1 -->
+                            <div class="span2">
+                                <div id="general-info-widget" class="widget widget-table action-table">
+                                    <div class="widget-header">
+                    
+                                        <h3>
+                                            Launchpad 1
+                                        </h3>
+                                        
+                                    </div><!-- /widget-header -->
+                                    <div class="widget-content">
+                                        <div class="general-info-item">
+                                            <span class="general-title">Enabled</span>
+                                            <span class="general-data" id="os-info"><input type="checkbox" class="enabled" name="pad-1" value="1"></span>
+                                        </div>
+                                        <div class="general-info-item">
+                                            <span class="general-title">Delay</span>
+                                            <span class="general-data"><input class="delay" type="tel" name="delay-1" maxlength="4" size="4"></span>
+                                        </div>
+                                    </div>
+                                </div><!-- /widget -->
+                            </div> 
+                            <!-- pad-2 -->
+                            <div class="span2">
+                                <div id="general-info-widget" class="widget widget-table action-table">
+                                    <div class="widget-header">
+                    
+                                        <h3>
+                                            Launchpad 2
+                                        </h3>
+                                        
+                                    </div><!-- /widget-header -->
+                                    <div class="widget-content">
+                                        <div class="general-info-item">
+                                            <span class="general-title">Enabled</span>
+                                            <span class="general-data" id="os-info"><input type="checkbox" class="enabled" name="pad-2" value="1"></span>
+                                        </div>
+                                        <div class="general-info-item">
+                                            <span class="general-title">Delay</span>
+                                            <span class="general-data"><input class="delay" type="tel" name="delay-2" maxlength="4" size="4"></span>
+                                        </div>
+                                    </div>
+                                </div><!-- /widget -->
+                            </div> 
+                            <!-- pad-3 -->
+                            <div class="span2">
+                                <div id="general-info-widget" class="widget widget-table action-table">
+                                    <div class="widget-header">
+                    
+                                        <h3>
+                                            Launchpad 3
+                                        </h3>
+                                        
+                                    </div><!-- /widget-header -->
+                                    <div class="widget-content">
+                                        <div class="general-info-item">
+                                            <span class="general-title">Enabled</span>
+                                            <span class="general-data" id="os-info"><input type="checkbox" class="enabled" name="pad-3" value="1"></span>
+                                        </div>
+                                        <div class="general-info-item">
+                                            <span class="general-title">Delay</span>
+                                            <span class="general-data"><input class="delay" type="tel" name="delay-3" maxlength="4" size="4"></span>
+                                        </div>
+                                    </div>
+                                </div><!-- /widget -->
+                            </div> 
+                            <!-- pad-4 -->
+                            <div class="span2">
+                                <div id="general-info-widget" class="widget widget-table action-table">
+                                    <div class="widget-header">
+                    
+                                        <h3>
+                                            Launchpad 4
+                                        </h3>
+                                        
+                                    </div><!-- /widget-header -->
+                                    <div class="widget-content">
+                                        <div class="general-info-item">
+                                            <span class="general-title">Enabled</span>
+                                            <span class="general-data" id="os-info"><input type="checkbox" class="enabled" name="pad-4" value="1"></span>
+                                        </div>
+                                        <div class="general-info-item">
+                                            <span class="general-title">Delay</span>
+                                            <span class="general-data"><input class="delay" type="tel" name="delay-4" maxlength="4" size="4"></span>
+                                        </div>
+                                    </div>
+                                </div><!-- /widget -->
+                            </div>                             
+                            <!-- pad-5 -->
+                            <div class="span2">
+                                <div id="general-info-widget" class="widget widget-table action-table">
+                                    <div class="widget-header">
+                    
+                                        <h3>
+                                            Launchpad 5
+                                        </h3>
+                                        
+                                    </div><!-- /widget-header -->
+                                    <div class="widget-content">
+                                        <div class="general-info-item">
+                                            <span class="general-title">Enabled</span>
+                                            <span class="general-data" id="os-info"><input type="checkbox" class="enabled" name="pad-5" value="1"></span>
+                                        </div>
+                                        <div class="general-info-item">
+                                            <span class="general-title">Delay</span>
+                                            <span class="general-data"><input class="delay" type="tel" name="delay-5" maxlength="4" size="4"></span>
+                                        </div>
+                                    </div>
+                                </div><!-- /widget -->
+                            </div> 
+                            <!-- pad-6 -->
+                            <div class="span2">
+                                <div id="general-info-widget" class="widget widget-table action-table">
+                                    <div class="widget-header">
+                    
+                                        <h3>
+                                            Launchpad 6
+                                        </h3>
+                                        
+                                    </div><!-- /widget-header -->
+                                    <div class="widget-content">
+                                        <div class="general-info-item">
+                                            <span class="general-title">Enabled</span>
+                                            <span class="general-data" id="os-info"><input type="checkbox" class="enabled" name="pad-6" value="1"></span>
+                                        </div>
+                                        <div class="general-info-item">
+                                            <span class="general-title">Delay</span>
+                                            <span class="general-data"><input class="delay" type="tel" name="delay-6" maxlength="4" size="4"></span>
+                                        </div>
+                                    </div>
+                                </div><!-- /widget -->
+                            </div> 
+                            <!-- pad-7 -->
+                            <div class="span2">
+                                <div id="general-info-widget" class="widget widget-table action-table">
+                                    <div class="widget-header">
+                    
+                                        <h3>
+                                            Launchpad 7
+                                        </h3>
+                                        
+                                    </div><!-- /widget-header -->
+                                    <div class="widget-content">
+                                        <div class="general-info-item">
+                                            <span class="general-title">Enabled</span>
+                                            <span class="general-data" id="os-info"><input type="checkbox" class="enabled" name="pad-7" value="1"></span>
+                                        </div>
+                                        <div class="general-info-item">
+                                            <span class="general-title">Delay</span>
+                                            <span class="general-data"><input class="delay" type="tel" name="delay-7" maxlength="4" size="4"></span>
+                                        </div>
+                                    </div>
+                                </div><!-- /widget -->
+                            </div> 
+                            <!-- pad-8 -->
+                            <div class="span2">
+                                <div id="general-info-widget" class="widget widget-table action-table">
+                                    <div class="widget-header">
+                    
+                                        <h3>
+                                            Launchpad 8
+                                        </h3>
+                                        
+                                    </div><!-- /widget-header -->
+                                    <div class="widget-content">
+                                        <div class="general-info-item">
+                                            <span class="general-title">Enabled</span>
+                                            <span class="general-data" id="os-info"><input type="checkbox" class="enabled" name="pad-8" value="1"></span>
+                                        </div>
+                                        <div class="general-info-item">
+                                            <span class="general-title">Delay</span>
+                                            <span class="general-data"><input class="delay" type="tel" name="delay-8" maxlength="4" size="4"></span>
+                                        </div>
+                                    </div>
+                                </div><!-- /widget -->
+                            </div> 
+                            <!-- pad-9 -->
+                            <div class="span2">
+                                <div id="general-info-widget" class="widget widget-table action-table">
+                                    <div class="widget-header">
+                    
+                                        <h3>
+                                            Launchpad 9
+                                        </h3>
+                                        
+                                    </div><!-- /widget-header -->
+                                    <div class="widget-content">
+                                        <div class="general-info-item">
+                                            <span class="general-title">Enabled</span>
+                                            <span class="general-data" id="os-info"><input type="checkbox" class="enabled" name="pad-9" value="1"></span>
+                                        </div>
+                                        <div class="general-info-item">
+                                            <span class="general-title">Delay</span>
+                                            <span class="general-data"><input class="delay" type="tel" name="delay-9" maxlength="4" size="4"></span>
+                                        </div>
+                                    </div>
+                                </div><!-- /widget -->
+                            </div> 
+                            <!-- pad-10 -->
+                            <div class="span2">
+                                <div id="general-info-widget" class="widget widget-table action-table">
+                                    <div class="widget-header">
+                    
+                                        <h3>
+                                            Launchpad 10
+                                        </h3>
+                                        
+                                    </div><!-- /widget-header -->
+                                    <div class="widget-content">
+                                        <div class="general-info-item">
+                                            <span class="general-title">Enabled</span>
+                                            <span class="general-data" id="os-info"><input class="enabled" type="checkbox" name="pad-10" value="1"></span>
+                                        </div>
+                                        <div class="general-info-item">
+                                            <span class="general-title">Delay</span>
+                                            <span class="general-data"><input class="delay" type="tel" name="delay-10" maxlength="4" size="4"></span>
+                                        </div>
+                                    </div>
+                                </div><!-- /widget -->
+                            </div>                   
+
+                    </div><!-- #/widgets -->   
+                </div>
+            </div><!-- /main-inner -->
+        </div><!-- /main -->
+
+        <div class="footer">
+            <div class="footer-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="span12" style="text-align:center">
+                            Mission Control - Remote Fireworks Detonator
+                            <br>
+                            Created by Corey Durthaler & Matt Levine
+                        </div><!-- /span12 -->
+                    </div><!-- /row -->
+                </div><!-- /container -->
+            </div><!-- /footer-inner -->
+        </div><!-- /footer -->
+        <div id="debug">
+            <textarea id='debugArea' rows='10' cols='50'></textarea>
+        </div>
+        <!-- Javascript-->
+        <script>
+            function launch() {
+                $("#widgets").block({ 
+                    message: '<div><h3>Launching<br></h3><h3 id="countdown" style="font-size:28pt;font-weight:bold"></h3><audio autoplay><source src="audio.mp3" type="audio/mpeg">Your browser does not support the audio element.</audio></div>' 
+                });    
+                var count=10;
+                var counter=setInterval(timer, 1000); 
+                function timer(){
+                    count=count-1;
+                    if (count <= 0){
+                        clearInterval(counter);
+                        return;
+                    }
+                    $("#countdown").html(count);
+                }
+                setTimeout(function() {
+                    buildJSON();
+                    $("#widgets").unblock();
+                    
+                }, 10000);
+
+            }
+
+
+            function enableAll() {
+                $('.span2').each(function(i, obj) {
+                    $(this).find('.enabled').prop('checked', true);
+                });
+            }
+
+            function disableAll() {
+                 $('.span2').each(function(i, obj) {
+                    $(this).find('.enabled').prop('checked', false);
+                });               
+            }
+
+            function buildJSON() {
+
+                jsonObj = [];
+                $('.span2').each(function(i, obj) {
+                    if($(this).find(".enabled").is(':checked')){
+                        var strip = "pad-";
+                        var id = $(this).find(".enabled").attr('name');
+                        id = id.replace(strip,'');
+                        var delay = $(this).find(".delay").val();
+                        if(delay === "") { delay = "0"}
+                        if (isNumeric(delay)){
+                            item = {}
+                            item ["id"] = id;
+                            item ["delay"] = delay;
+
+                            jsonObj.push(item);
+                        }                      
+                    }
+                });
+                console.log(jsonObj);
+                var dataAsText = JSON.stringify(jsonObj);
+                // w jquery
+                 $('#debugArea').text(dataAsText);
+                 disableAll();
+            }
+            function isNumeric(n) {
+                return !isNaN(parseFloat(n)) && isFinite(n);
+            }
+        </script>
+
+
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="js/jquery.js" type="text/javascript"></script>
+        <script src="js/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.js" type="text/javascript"></script>
+        <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="js/odometer.js" type="text/javascript"></script>
+        <script src="js/dashboard.js" type="text/javascript"></script>
+        <script src="js/base.js" type="text/javascript"></script>
+        <script src="js/jquery.blockUI.js" type="text/javascript"></script>
+    </body>
+</html>

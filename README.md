@@ -1,6 +1,8 @@
 
 MissionControl is a Remote Web Based Fireworks detenator written in Node that interfaces with the GPIO of a raspberry pi
 
+####Front End Demo: www.plugnpromo.com/mc/
+
 ####License
 The MIT License (MIT)
 
